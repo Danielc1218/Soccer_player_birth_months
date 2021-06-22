@@ -13,8 +13,8 @@
       "title": "Euro 2020 Soccer Player Birth Months",
       "description": "Examination of the birth months of players at Euro 2020",
       "author": [],
-      "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2021-06-21T19:35:22-05:00"
+      "contents": "\r\n\r\n\r\nx <- read_csv(\"birthdate.csv\",  col_types = cols(value = col_character()))\r\n\r\nx %>% \r\n  mutate(date = parse_date(str_sub(value, 2, 11))) %>% \r\n  mutate(raw_month = months(date)) %>% \r\n  mutate(month = parse_factor(raw_month, levels = month.name)) %>% \r\n  group_by(month) %>% \r\n  summarize(total = n()) %>% \r\n  ggplot(mapping = aes(x = month, y = total, fill = total))+\r\n  geom_col()+\r\n  theme_classic()+\r\n  labs(title = \"Number of EU Soccer Players Born in Each Month\", subtitle = \"There are more professional soccer players in the early part of the year\", x = \"Month\", y = \"Number of Players\", caption = \"Source: Wikipedia UEFA Euro 2020 squads\")\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-06-21T19:40:27-05:00"
     }
   ],
   "collections": []
